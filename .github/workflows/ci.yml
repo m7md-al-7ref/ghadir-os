@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  kernel:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential gcc-multilib grub-pc-bin grub-common xorriso mtools qemu-system-x86
+      - name: Build the kernel
+        run: make kernel
+      - name: Kernel tests on QEMU
+        run: make test
+
+  # Slower end-to-end check (builds dietlibc + TinyCC, boots the shell image, runs the shell tests).
+  # Run it by hand from the Actions tab (workflow_dispatch).
+  shell-lite:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential gcc-multilib grub-pc-bin grub-common xorriso mtools qemu-system-x86 curl xz-utils
+      - run: make toolchain-lite
+      - run: make shell
+      - name: Shell tests (light image)
+        run: python3 gng/shell/test-shell.py dist/ghadir-os-*.iso --lite

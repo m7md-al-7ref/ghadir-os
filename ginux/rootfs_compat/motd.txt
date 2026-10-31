@@ -1,0 +1,3 @@
+Welcome to GINUX (Al-Ghadir OS)!
+This file was read from the initrd (USTAR) filesystem
+via real open()/read()/close() syscalls from ring3.

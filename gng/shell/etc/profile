@@ -1,0 +1,4 @@
+# Ghadir OS: startup commands for the interactive shell
+export PATH=/bin
+export HOME=/home
+cd /home

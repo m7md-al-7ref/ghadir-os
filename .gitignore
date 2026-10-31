@@ -1,0 +1,20 @@
+# build outputs
+*.o
+*.d
+*.iso
+dist/
+ginux/ginux.bin
+ginux/iso/
+ginux/iso_compat/
+ginux/rootfs_compat/init
+ginux/rootfs/execve_target.elf
+ginux/userland/*.elf
+# note: ginux/boot/prebuilt/gng-hello.elf is committed on purpose (its source, the GNG C library, is not in this repository yet)
+userland_compat/*.o
+# toolchain binaries are built by gng/*/build.sh (large, third-party licenses) -- do not commit them
+gng/prebuilt/*
+!gng/prebuilt/README.md
+# editor / OS noise
+*~
+*.swp
+.DS_Store

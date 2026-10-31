@@ -1,0 +1,7 @@
+Ghadir OS (ginux kernel + gng tools) -- MIT License, see LICENSE in the source repository.
+
+This image also contains third-party programs, each under its own license:
+  GCC 4.7.4 (GPLv3 + runtime exception)   binutils 2.45: as, ld, objdump, ar (GPLv3)
+  TinyCC (LGPLv2.1)                       dietlibc 0.34 (GPLv2)
+  sh and cc are statically linked with glibc 2.39 (LGPLv2.1); libgcc.a is from GCC 13 (GPLv3 + runtime exception)
+Exact versions, license texts' locations and source URLs: docs/THIRD_PARTY.md in the source repository.
